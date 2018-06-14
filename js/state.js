@@ -12,8 +12,8 @@ var state = {
   // Game data
   turn: 1,
   players: [
-    {name: '王者'},
-    {name: '英雄'}
+    {name: 'Chase'},
+    {name: 'Sherry'}
   ],
   currentPlayerIndex: Math.round(Math.random()),
 }

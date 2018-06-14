@@ -15,7 +15,7 @@ Vue.component('top-bar', {
 Vue.component('card', {
   props: ['cardObj'],
   template:
-    `<div class='card' :class='"type-" + cardObj.type'>
+    `<div class='card' :class='"type-" + cardObj.type' @click='play'>
       <div class='title'>{{ cardObj.title }}</div>
       <img class='separator' src='images/card-separator.svg' alt='separator under the title of the card'>
       <div class="description">
@@ -24,5 +24,10 @@ Vue.component('card', {
       <div class="note" v-if="cardObj.note">
         <div v-html="cardObj.note"></div>
       </div>
-    </div>`
+    </div>`,
+    methods: {
+      play() {
+        this.$emit('play')
+      }
+    }
 })
