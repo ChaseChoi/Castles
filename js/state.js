@@ -26,7 +26,7 @@ var state = {
     {
       uid: 1,
       id: 1,
-      def: cards.catapult
+      def: cards.farm
     },
     {
       id: 2,
@@ -44,4 +44,5 @@ var state = {
       def: cards.repair
     }
   ],
+
 }

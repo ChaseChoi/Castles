@@ -5,9 +5,8 @@ new Vue({
   template:
   `<div>
     <top-bar :current-player-index='currentPlayerIndex' :turn='turn' :players='players'/>
-    <card :card-obj="testCard" @play="handlePlay"/>
     <transition name='hand'>
-      <hand :cards="testHand" v-if="!activityOverlay" />
+      <hand :cards="testHand" v-if="!activityOverlay" @play-card="testPlayCard" />
     </transition>
   </div>`,
   computed: {
@@ -16,26 +15,11 @@ new Vue({
     }
   },
   methods: {
-    handlePlay() {
-      console.log('Caught play event!');
+    testPlayCard(card) {
+      // get the index of chosen card
+      const index = this.testHand.indexOf(card)
+      this.testHand.splice(index, 1)
     },
-    createHand() {
-      const cards = []
-      const ids = Object.keys(cards)
-      for (var i = 0; i < 5; i++) {
-        cards.push(testDrawHand())
-      }
-      return cards
-    },
-    testDrawHand() {
-      const ids = Object.keys(cards)
-      const randomId = ids[Math.floor(Math.random() * ids.length)]
-      return {
-        uid: cardUid++,
-        id: randomId,
-        def: cards[randomId],
-      }
-    }
   },
 })
 

@@ -35,10 +35,17 @@ Vue.component('card', {
 Vue.component('hand', {
   props: ['cards'],
   template: `
-    <div class="hand">
+    <div>
       <div class="wrapper">
-        <card v-for="card in cards" :cardObj="card.def" :key="card.id" />
+        <transition-group name="card" tag="div" class="card">
+          <card v-for="card of cards" :cardObj="card.def" :key="card.uid" @play="handlePlay(card)" />
+        </transition-group>
       </div>
     </div>
-  `
+  `,
+  methods: {
+    handlePlay(card) {
+      this.$emit('play-card', card)
+    },
+  }
 })
