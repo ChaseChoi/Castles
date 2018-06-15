@@ -16,4 +16,32 @@ var state = {
     {name: 'Sherry'}
   ],
   currentPlayerIndex: Math.round(Math.random()),
+  activityOverlay: null,
+  testHand: [
+    {
+      uid: 0,
+      id: 0,
+      def: cards.archers
+    },
+    {
+      uid: 1,
+      id: 1,
+      def: cards.catapult
+    },
+    {
+      id: 2,
+      id: 2,
+      def: cards.trebuchet
+    },
+    {
+      id: 3,
+      id: 3,
+      def: cards.knighthood
+    },
+    {
+      uid: 4,
+      id: 4,
+      def: cards.repair
+    }
+  ],
 }
