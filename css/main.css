@@ -1,0 +1,6 @@
+.card-in-hands {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 12em;
+}

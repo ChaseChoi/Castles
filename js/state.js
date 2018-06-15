@@ -29,12 +29,12 @@ var state = {
       def: cards.farm
     },
     {
-      id: 2,
+      uid: 2,
       id: 2,
       def: cards.trebuchet
     },
     {
-      id: 3,
+      uid: 3,
       id: 3,
       def: cards.knighthood
     },
