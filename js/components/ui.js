@@ -49,3 +49,74 @@ Vue.component('hand', {
     },
   }
 })
+
+// overlay
+Vue.component('overlay', {
+  template:
+  `<div class="overlay" @click="handleClick">
+    <div class="content">
+      <slot/>
+    </div>
+  </div>`,
+  methods: {
+    handleClick() {
+      this.$emit('close')  // close the overlay
+    }
+  }
+})
+
+Vue.component('overlay-content-play-turn', {
+  props: ['player'],
+  template:
+  `<div>
+    <div class="big" v-if="player.isSkip">
+      {{ player.name }}, <br/> 跳过该回合!
+    </div>
+    <div class="big" v-else>
+      {{ player.name }}, <br/> 你的回合!
+    </div>
+  </div>`
+})
+
+Vue.component('overlay-content-last-play', {
+  props: ['opponent'],
+  computed: {
+    lastCard() {
+      return getLastCard(this.opponent)
+    }
+  },
+  template:
+  `<div>
+    <div class="big" v-if="opponent.isSkip">
+      {{ opponent.name }}, <br/> 跳过该回合!
+    </div>
+    <div class="big" v-else>
+      <div>{{ opponent.name }} 使用了</div>
+      <card cardObj="lastCard" />
+    </div>
+  </div>`
+})
+
+
+Vue.component('overlay-content-game-over', {
+  template:
+  `<div>
+    <div class="big">Game Over</div>
+    <play-result v-for="player in players" :player="player" />
+  </div>`,
+  props: ["players"],
+})
+
+Vue.component('play-result', {
+  props: ['player'],
+  template:
+  `<div class="play-result" :class="result">
+    <span class="name">{{ player.name }}</span>
+    <span class="result">{{ result }}</span>
+  </div>`,
+  computed: {
+    result() {
+      return this.player.isDead ? 'defeated' : 'victorious'
+    }
+  }
+})

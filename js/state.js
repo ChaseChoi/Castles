@@ -12,11 +12,30 @@ var state = {
   // Game data
   turn: 1,
   players: [
-    {name: 'Chase'},
-    {name: 'Sherry'}
+    {
+      name: 'Chase',
+      health: 10,
+      food: 10,
+      isSkip: false,
+      hasSkipped: false,
+      lastCardId: null,
+      isDead: false,
+      hand: [],
+    },
+    {
+      name: 'Sherry',
+      health: 10,
+      food: 10,
+      isSkip: false,
+      hasSkipped: false,
+      lastCardId: null,
+      isDead: false,
+      hand: [],
+    }
   ],
   currentPlayerIndex: Math.round(Math.random()),
-  activityOverlay: null,
+  activityOverlay: null,  // null: means no overlay; not null: hold the name of overlay
+
   testHand: [
     {
       uid: 0,
@@ -44,5 +63,14 @@ var state = {
       def: cards.repair
     }
   ],
+  get currentPlayer() {
+    return state.players[state.currentPlayerIndex]
+  },
+  get currentOpponentIndex() {
+    return state.currentPlayerIndex === 0 ? 1 : 0
+  },
+  get currentOpponent() {
+    return state.players[state.currentOpponentIndex]
+  }
 
 }
