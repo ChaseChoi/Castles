@@ -102,7 +102,7 @@ Vue.component('overlay-content-game-over', {
   template:
   `<div>
     <div class="big">Game Over</div>
-    <play-result v-for="player in players" :player="player" />
+    <play-result v-for="player in players" :player="player" :key="player.id"/>
   </div>`,
   props: ["players"],
 })

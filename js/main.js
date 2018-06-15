@@ -8,11 +8,13 @@ new Vue({
     <transition name='hand'>
       <hand :cards="testHand" v-if="!activityOverlay" @play-card="testPlayCard" />
     </transition>
-    <overlay v-if="activityOverlay">
-      <overlay-content-play-turn v-if="activityOverlay==='play-turn'" :player="currentPlayer" />
-      <overlay-content-last-play v-if="activityOverlay==='last-play'" :opponent="currentOpponent" />
-      <overlay-content-game-over v-if="activityOverlay==='game-over'" :players="players" />
-    </overlay>
+    <transition name='zoom'>
+      <overlay v-if="activityOverlay" :key="activityOverlay">
+        <overlay-content-play-turn v-if="activityOverlay==='play-turn'" :player="currentPlayer" />
+        <overlay-content-last-play v-if="activityOverlay==='last-play'" :opponent="currentOpponent" />
+        <overlay-content-game-over v-if="activityOverlay==='game-over'" :players="players" />
+      </overlay>
+    </transition>
   </div>`,
   computed: {
     testCard() {

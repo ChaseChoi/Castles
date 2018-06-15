@@ -13,6 +13,7 @@ var state = {
   turn: 1,
   players: [
     {
+      id: 0,
       name: 'Chase',
       health: 10,
       food: 10,
@@ -23,6 +24,7 @@ var state = {
       hand: [],
     },
     {
+      id: 1,
       name: 'Sherry',
       health: 10,
       food: 10,

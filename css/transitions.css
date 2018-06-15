@@ -1,4 +1,5 @@
 /* For cards in hand */
+
 .hand-enter-active, .hand-leave-active {
   transition: opacity 0.5s;
 }
@@ -23,7 +24,9 @@
 .hand-enter .card, .hand-leave-to .card {
   margin: 0 -100px;
 }
+
 /* For card play */
+
 .card {
   /* Used for enter, move and mouse over animations */
   transition: all .3s;
@@ -50,4 +53,15 @@
   opacity: 0;
   /* Zoom the card upwards */
   transform: translateX(-106px) translateY(-300px) scale(1.5);
+}
+
+/* For overlays */
+
+.zoom-enter-active, .zoom-leave-active {
+  transition: opacity .3s, transform .3s;
+}
+
+.zoom-enter, .zoom-leave-to {
+  opacity: 0;
+  transform: scale(.7);
 }
