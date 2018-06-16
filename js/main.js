@@ -1,11 +1,13 @@
 new Vue({
   name: 'game',
   el: '#app',
-  data: state,  // declared in state.js
-  template:
-  `<div>
+  data: state, // declared in state.js
+  template: `<div>
     <top-bar :current-player-index='currentPlayerIndex' :turn='turn' :players='players'/>
     <div class='world'>
+      <div class="clouds">
+        <cloud v-for="index in 10" :type="(index - 1) % 5 + 1" :key="index"/>
+      </div>
       <castle v-for="(player, index) in players" :player="player" :index="index" :key="index"/>
       <div class="land"></div>
     </div>
@@ -39,5 +41,8 @@ window.addEventListener('resize', () => {
 })
 
 requestAnimationFrame(animate);
-function animate(time) { requestAnimationFrame(animate); TWEEN.update(time);
+
+function animate(time) {
+  requestAnimationFrame(animate);
+  TWEEN.update(time);
 }
