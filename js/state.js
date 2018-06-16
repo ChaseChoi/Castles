@@ -41,13 +41,7 @@ var state = {
 
   handPile: pile,  // see cards.js
   discardPile: {},
-  computed: {
-    cssClass() {
-      return {
-        'can-play': this.canPlay,
-      }
-    }
-  },
+
   get currentPlayer() {
     return state.players[state.currentPlayerIndex]
   },

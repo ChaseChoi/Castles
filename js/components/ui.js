@@ -78,6 +78,7 @@ Vue.component('overlay-content-play-turn', {
     <div class="big" v-else>
       {{ player.name }}, <br/> 你的回合!
     </div>
+    <div>轻点继续</div>
   </div>`
 })
 
@@ -90,13 +91,13 @@ Vue.component('overlay-content-last-play', {
   },
   template:
   `<div>
-    <div class="big" v-if="opponent.isSkip">
+    <div class="big" v-if="opponent.hasSkipped">
       {{ opponent.name }}, <br/> 跳过该回合!
     </div>
-    <div class="big" v-else>
-      <div>{{ opponent.name }} 使用了</div>
-      <card cardObj="lastCard" />
-    </div>
+    <template v-else>
+      <div>{{ opponent.name }} just played:</div>
+      <card :cardObj="lastCard" />
+    </template>
   </div>`
 })
 

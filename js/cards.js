@@ -60,7 +60,7 @@ let cards = [
     title: 'Repair',
     description: 'Repair 5 <b>Damage</b><br>Skip your next turn',
     play (player, opponent) {
-      player.skipTurn = true
+      player.isSkip = true
       player.health += 5
     }
   },
@@ -82,7 +82,7 @@ let cards = [
     description: 'Gather 5 <b>Food</b><br>Skip your next turn',
     note: '&#171;One should be patient to grow crops.&#187;',
     play (player, opponent) {
-      player.skipTurn = true
+      player.isSkip = true
       player.food += 5
     },
   },
@@ -114,7 +114,7 @@ let cards = [
     note: '&#171;Magic isn\'t for kids. You fool.&#187;',
     play (player, opponent) {
       player.health -= 3
-      player.skipTurn = true
+      player.isSkip = true
       opponent.health -= 5
     },
   },

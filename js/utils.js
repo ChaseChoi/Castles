@@ -67,10 +67,6 @@ function applyCardEffect (card) {
   state.players.forEach(checkStatsBounds)
 }
 
-function getLastPlayedCard (player) {
-  return cards[player.lastCardId]
-}
-
 // Player
 
 function checkStatsBounds (player) {

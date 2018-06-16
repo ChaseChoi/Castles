@@ -2,8 +2,10 @@ new Vue({
   name: 'game',
   el: '#app',
   data: state, // declared in state.js
-  template: `<div>
+  template:
+  `<div id="#app" :class="cssClass">
     <top-bar :current-player-index='currentPlayerIndex' :turn='turn' :players='players'/>
+
     <div class='world'>
       <div class="clouds">
         <cloud v-for="index in 10" :type="(index - 1) % 5 + 1" :key="index"/>
@@ -11,11 +13,17 @@ new Vue({
       <castle v-for="(player, index) in players" :player="player" :index="index" :key="index"/>
       <div class="land"></div>
     </div>
+
     <transition name='hand'>
-      <hand :cards="currentHand" v-if="!activityOverlay" @play-card="handlePlayCard" @card-leave-end="handleCardLeaveEnd"/>
+      <hand v-if="!activityOverlay" :cards="currentHand" @play-card="handlePlayCard" @card-leave-end="handleCardLeaveEnd"/>
     </transition>
+
+    <transition name="fade">
+      <div class="overlay-background" v-if="activityOverlay" />
+    </transition>
+
     <transition name='zoom'>
-      <overlay v-if="activityOverlay" :key="activityOverlay">
+      <overlay v-if="activityOverlay" :key="activityOverlay" @close="handleOverlayClose">
         <overlay-content-play-turn v-if="activityOverlay==='play-turn'" :player="currentPlayer" />
         <overlay-content-last-play v-if="activityOverlay==='last-play'" :opponent="currentOpponent" />
         <overlay-content-game-over v-if="activityOverlay==='game-over'" :players="players" />
@@ -23,8 +31,10 @@ new Vue({
     </transition>
   </div>`,
   computed: {
-    testCard() {
-      return cards.archers
+    cssClass() {
+      return {
+        'can-play': this.canPlay,
+      }
     }
   },
   methods: {
@@ -34,12 +44,33 @@ new Vue({
     handleCardLeaveEnd() {
       applyCard()
     },
+    handleOverlayClose() {
+      overlayCloseHandlers[this.activityOverlay]()
+    },
   },
   mounted() {
     // init cards in hand
     beginGame()
   }
 })
+
+var overlayCloseHandlers = {
+  'play-turn' () {
+    if (state.turn > 1) {
+      state.activityOverlay = 'last-play'
+    } else {
+      newTurn()
+    }
+  },
+
+  'last-play' () {
+    newTurn()
+  },
+
+  'game-over' () {
+    document.location.reload()
+  },
+}
 
 window.addEventListener('resize', () => {
   state.worldRatio = getWorldRatio()
@@ -51,6 +82,9 @@ function animate(time) {
   requestAnimationFrame(animate);
   TWEEN.update(time);
 }
+
+// entry: start the game
+state.activityOverlay = 'play-turn'
 
 function beginGame() {
   state.players.forEach(drawInitialHand)
@@ -88,6 +122,34 @@ function endGame() {
 
 function nextTurn() {
   state.turn++
-  state.currentPlayerIndex = state.currentOpponentId; // change player
-  state.activeOverlay = 'player-turn'
+  state.currentPlayerIndex = state.currentOpponentIndex; // change player
+  state.activityOverlay = 'play-turn'
+}
+
+function newTurn() {
+  state.activityOverlay = null
+  if (state.currentPlayer.isSkip) {
+    skipTurn()
+  } else {
+    beginTurn()
+  }
+}
+
+function skipTurn() {
+  state.currentPlayer.hasSkipped = true
+  state.currentPlayer.isSkip = false
+  nextTurn()
+}
+
+function beginTurn() {
+  state.currentPlayer.hasSkipped = false // If both player already had a first turn
+  if (state.turn > 2) {
+    // Draw new card
+    setTimeout(() => {
+      state.currentPlayer.hand.push(drawCard())
+      state.canPlay = true
+    }, 800)
+  } else {
+    state.canPlay = true
+  }
 }
