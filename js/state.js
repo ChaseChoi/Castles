@@ -11,6 +11,7 @@ var state = {
   worldRatio: getWorldRatio(),
   // Game data
   turn: 1,
+  canPlay: false,
   players: [
     {
       id: 0,
@@ -38,33 +39,15 @@ var state = {
   currentPlayerIndex: Math.round(Math.random()),
   activityOverlay: null,  // null: means no overlay; not null: hold the name of overlay
 
-  testHand: [
-    {
-      uid: 0,
-      id: 0,
-      def: cards.archers
-    },
-    {
-      uid: 1,
-      id: 1,
-      def: cards.farm
-    },
-    {
-      uid: 2,
-      id: 2,
-      def: cards.trebuchet
-    },
-    {
-      uid: 3,
-      id: 3,
-      def: cards.knighthood
-    },
-    {
-      uid: 4,
-      id: 4,
-      def: cards.repair
+  handPile: pile,  // see cards.js
+  discardPile: {},
+  computed: {
+    cssClass() {
+      return {
+        'can-play': this.canPlay,
+      }
     }
-  ],
+  },
   get currentPlayer() {
     return state.players[state.currentPlayerIndex]
   },
@@ -73,6 +56,9 @@ var state = {
   },
   get currentOpponent() {
     return state.players[state.currentOpponentIndex]
+  },
+  get currentHand() {
+    return state.currentPlayer.hand
   }
 
 }

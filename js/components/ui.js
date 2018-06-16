@@ -37,7 +37,7 @@ Vue.component('hand', {
   template: `
     <div class="card-in-hands">
       <div class="wrapper">
-        <transition-group name="card" tag="div" class="cards">
+        <transition-group name="card" tag="div" class="cards" @after-leave="handleLeaveTransitionEnd">
           <card v-for="card of cards" :cardObj="card.def" :key="card.uid" @play="handlePlay(card)" />
         </transition-group>
       </div>
@@ -46,6 +46,9 @@ Vue.component('hand', {
   methods: {
     handlePlay(card) {
       this.$emit('play-card', card)
+    },
+    handleLeaveTransitionEnd() {
+      this.$emit('card-leave-end')
     },
   }
 })

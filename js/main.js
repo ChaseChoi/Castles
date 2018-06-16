@@ -12,7 +12,7 @@ new Vue({
       <div class="land"></div>
     </div>
     <transition name='hand'>
-      <hand :cards="testHand" v-if="!activityOverlay" @play-card="testPlayCard" />
+      <hand :cards="currentHand" v-if="!activityOverlay" @play-card="handlePlayCard" @card-leave-end="handleCardLeaveEnd"/>
     </transition>
     <transition name='zoom'>
       <overlay v-if="activityOverlay" :key="activityOverlay">
@@ -28,12 +28,17 @@ new Vue({
     }
   },
   methods: {
-    testPlayCard(card) {
-      // get the index of chosen card
-      const index = this.testHand.indexOf(card)
-      this.testHand.splice(index, 1)
+    handlePlayCard(card) {
+      playCard(card)
+    },
+    handleCardLeaveEnd() {
+      applyCard()
     },
   },
+  mounted() {
+    // init cards in hand
+    beginGame()
+  }
 })
 
 window.addEventListener('resize', () => {
@@ -45,4 +50,44 @@ requestAnimationFrame(animate);
 function animate(time) {
   requestAnimationFrame(animate);
   TWEEN.update(time);
+}
+
+function beginGame() {
+  state.players.forEach(drawInitialHand)
+}
+
+function playCard(card) {
+  if (state.canPlay) {
+    state.canPlay = false;
+    currentPlayingCard = card;
+    // Remove the card from the player hand
+    const index = state.currentPlayer.hand.indexOf(card)
+    state.currentPlayer.hand.splice(index, 1)
+    // Add the card to the discard pile
+    addCardToPile(state.discardPile, card.id)
+  }
+}
+
+function applyCard() {
+  const card = currentPlayingCard
+  applyCardEffect(card)
+
+  setTimeout(() => {
+    state.players.forEach(checkPlayerLost)
+    if (isOnePlayerDead()) {
+      endGame()
+    } else {
+      nextTurn()
+    }
+  }, 700)
+}
+
+function endGame() {
+  state.activityOverlay = 'game-over'
+}
+
+function nextTurn() {
+  state.turn++
+  state.currentPlayerIndex = state.currentOpponentId; // change player
+  state.activeOverlay = 'player-turn'
 }

@@ -16,11 +16,11 @@ function drawCard () {
   const choice = Math.round(Math.random() * (getDrawPileCount() - 1)) + 1
 
   let	accumulation = 0
-  for (let k in state.drawPile) {
-    accumulation += state.drawPile[k]
+  for (let k in state.handPile) {
+    accumulation += state.handPile[k]
     if (choice <= accumulation) {
       // Draw the card from the pile
-      state.drawPile[k] --
+      state.handPile[k] --
       return {
         id: k,
         uid: cardUid++,
@@ -45,15 +45,15 @@ function addCardToPile (pile, cardId) {
 }
 
 function refillPile () {
-  Object.assign(state.drawPile, state.discardPile)
+  Object.assign(state.handPile, state.discardPile)
   state.discardPile = {}
 }
 
 
 function getDrawPileCount () {
   let result = 0
-  for (let k in state.drawPile) {
-    result += state.drawPile[k]
+  for (let k in state.handPile) {
+    result += state.handPile[k]
   }
   return result
 }
@@ -61,14 +61,14 @@ function getDrawPileCount () {
 // Card play
 
 function applyCardEffect (card) {
-  state.currentPlayer.lastPlayedCardId = card.id
+  state.currentPlayer.lastCardId = card.id
   card.def.play(state.currentPlayer, state.currentOpponent)
   // Check if the stats (health, food) are not outside the boundaries
   state.players.forEach(checkStatsBounds)
 }
 
 function getLastPlayedCard (player) {
-  return cards[player.lastPlayedCardId]
+  return cards[player.lastCardId]
 }
 
 // Player
@@ -90,11 +90,11 @@ function checkStatsBounds (player) {
 }
 
 function checkPlayerLost (player) {
-  player.dead = (player.health === 0 || player.food === 0)
+  player.isDead = (player.health === 0 || player.food === 0)
 }
 
 function isOnePlayerDead () {
-  return state.players.some(p => p.dead)
+  return state.players.some(p => p.isDead)
 }
 // get info of the previous card
 function getLastCard(player) {
