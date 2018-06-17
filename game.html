@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transitions.css">
+  </head>
+  <body>
+    <!-- Include library -->
+    <!-- TODO: Use production version -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="js/vue.js"></script>
+    <script src="js/tween.js"></script>
+
+    <!-- Castles game app -->
+    <div id="app"></div>
+    <script type="text/x-template" id="banner">
+      <!-- banner template -->
+      <svg viewbox="0 0 20 260">
+        <path :d="`m 0,0 20,0 0,${height} -10,-10 -10,10 z`" :style="`fill:${color};stroke:none;`"/>
+      </svg>
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/components/ui.js"></script>
+    <script src="js/components/background.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
