@@ -20,11 +20,11 @@
             <a class="nav-link" href="#">主页<span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="signup.html">
-          <button class="btn btn-primary my-2 my-sm-0 mr-2" type="submit">登录</button>
+        <form class="form-inline my-2 my-lg-0">
+          <button type="button" data-target="#login-form" data-toggle="modal" class="btn btn-primary my-2 my-sm-0 mr-2">登录</button>
         </form>
-        <form class="form-inline my-2 my-lg-0" action="signup.html">
-          <button class="btn btn-success my-2 my-sm-0" type="submit">注册</button>
+        <form class="form-inline my-2 my-lg-0">
+          <button type="button" data-target="#sign-up-form" data-toggle="modal" class="btn btn-success my-2 my-sm-0 mr-2">注册</button>
         </form>
       </div>
     </nav>
@@ -75,8 +75,62 @@
       </a>
     </div>
     <!-- Sign Up and Sign In -->
-    
-    <!-- Sign Up and Sign In -->
+    <!-- login form -->
+    <div id="login-form" class="modal fade">
+    	<div class="modal-dialog modal-login">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<div class="avatar">
+    					<img src="images/avatar.png" alt="Avatar">
+    				</div>
+            <h3>用户登录</h3>
+    			</div>
+    			<div class="modal-body">
+    				<form action="/examples/actions/confirmation.php" method="post">
+    					<div class="form-group">
+    						<input type="text" class="form-control" name="username" placeholder="用户名" required="required">
+    					</div>
+    					<div class="form-group">
+    						<input type="password" class="form-control" name="password" placeholder="密码" required="required">
+    					</div>
+    					<div class="form-group">
+    						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">登录</button>
+    					</div>
+    				</form>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <div id="sign-up-form" class="modal fade">
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="avatar">
+              <img src="images/avatar.png" alt="Avatar">
+            </div>
+            <h3>用户注册</h3>
+          </div>
+          <div class="modal-body">
+            <form action="/examples/actions/confirmation.php" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="用户名" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="密码" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="passwordValid" placeholder="再次输入密码" required="required">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">注册</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Sign Up and Sign In -->
 
     <!-- games recommendation -->
     <div class="container">
@@ -157,6 +211,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/loginPage.js"></script>
+    <script src="js/homepage.js"></script>
   </body>
 </html>

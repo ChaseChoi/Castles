@@ -11,19 +11,24 @@
 .carousel {
   height: 50%;
 }
+
 .carousel-item img {
   opacity: 0.7;
-  filter: alpha(opacity=70); /* For IE8 and earlier */
+  filter: alpha(opacity=70);
+  /* For IE8 and earlier */
 }
+
 .carousel-item h1>span {
-  background-color:rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
+
 .carousel-item p>span {
-  background-color:rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 1px solid;
   border-radius: 1px;
 }
+
 @media (max-width: 776px) {
   .carousel {
     height: 100%;
@@ -52,24 +57,54 @@
 }
 
 /* card */
+
 .card {
   position: relative;
   top: 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
+
 /* footer-copyright */
+
 .footer-copyright {
   background-color: rgb(242, 242, 242);
 }
+
 .directory {
   margin-top: 2rem;
   padding-top: 1rem;
   width: 100%;
   background-color: rgb(242, 242, 242);
 }
+
 .directory ul {
   padding-left: 0;
   list-style-type: none;
+}
+
+/* login form */
+
+.modal-login {
+  margin-top: 6rem;
+}
+
+.modal-login .avatar {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -70px;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  z-index: 9;
+  background: rgb(20, 122, 241);
+  padding: 15px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal-login .avatar img {
+  width: 100%;
 }
