@@ -111,14 +111,15 @@
                                     <h3>用户注册</h3>
                                   </div>
                                   <div class="modal-body">
-                                    <form action="signup" method="post">
+                                    <form id="sign-up-info" action="signup" method="post">
                                       <div class="form-group">
                                         <input type="text" id="username-sign-up" class="form-control" name="username" placeholder="用户名" required="required"></div>
                                         <div class="duplicateError text-danger"></div>
-                                        <div class="form-group">
-                                          <input type="password" class="form-control" name="password" placeholder="密码" required="required"></div>
-                                          <div class="form-group">
-                                            <input type="password" class="form-control" name="passwordValid" placeholder="再次输入密码" required="required"></div>
+                                        <div class="form-group passwordField">
+                                          <input type="password" class="form-control" id="password-sign-up" name="password" placeholder="密码" required="required"></div>
+                                          <div class="form-group passwordField">
+                                            <input type="password" class="form-control" id="passwordValid" name="passwordValid" placeholder="再次输入密码" required="required"></div>
+                                            <div class="pwdNotMatch text-danger"></div>
                                             <div class="form-group">
                                               <button type="submit" class="btn btn-success btn-lg btn-block">注册</button>
                                             </div>

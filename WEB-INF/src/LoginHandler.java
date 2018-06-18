@@ -33,24 +33,26 @@ public class LoginHandler extends HttpServlet {
           throws ServletException, IOException {
      response.setContentType("text/html;charset=UTF-8");
      PrintWriter out = response.getWriter();
-
      Connection conn = null;
      Statement stmt = null;
+     String username = request.getParameter("username");
+     String password = request.getParameter("password");
      try {
         conn = pool.getConnection();
         stmt = conn.createStatement();
-        String sqlStr = "SELECT * FROM accounts";
-        // System.out.println(sqlStr);  // for debugging
-        ResultSet rset = stmt.executeQuery(sqlStr);
+        String loginSql = "SELECT * FROM accounts WHERE username=? AND STRCMP(password, PASSWORD(?)) = 0";
+        PreparedStatement query = conn.prepareStatement(loginSql);
+        query.setString(1, username);
+        query.setString(2, password);
+        ResultSet rset = query.executeQuery();
 
         out.println("<html><head><title>Welcome to game center</title></head><body>");
         out.println("<h2>Account</h2>");
         // Begin an HTML form
-        while (rset.next()) {  // list all the authors
-           String name = rset.getString("name");
-           out.println("<p>" + name + "</p>");
+        if (rset.next()) {  // list all the authors
+           String usernameGet = rset.getString("username");
+           out.println("<p>" + usernameGet + "</p>");
         }
-
         out.println("</body></html>");
      } catch (SQLException ex) {
         out.println("<h3>Service not available. Please try again later!</h3></body></html>");
