@@ -5,7 +5,9 @@
   top: 13em;
   z-index: 10;
 }
-
+.navbar-brand {
+  font-weight: bold;
+}
 /* Carousel*/
 
 .carousel {
@@ -47,7 +49,6 @@
   margin: auto;
   width: 100%
 }
-
 /* navbar */
 
 .navbar {
@@ -63,7 +64,11 @@
   top: 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card:hover {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 /* footer-copyright */
@@ -107,4 +112,8 @@
 
 .modal-login .avatar img {
   width: 100%;
+}
+
+#navbarDropdown {
+  color: white;
 }
