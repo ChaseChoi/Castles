@@ -62,4 +62,50 @@ $(document).ready(function() {
       $('.pwdNotMatch').html('');
     }
   });
+
+  $('#login-info').submit(function() {
+    event.preventDefault();
+    var username = $('#username').val().trim();
+    var password = $('#password').val().trim();
+    $.ajax({
+        type: 'POST',
+        url: 'login',
+        data: {
+          username: username,
+          password: password,
+        }
+      })
+      .done(function(responseText) {
+        // Triggered if response status code is 200 (OK)
+        if (responseText == 'false') {
+          $('.loginWrong').html('密码错误!');
+          $('#password').val('');
+        } else {
+          document.location.reload();
+        }
+      })
+      .fail(function(jqXHR, status, error) {
+        // Triggered if response status code is NOT 200 (OK)
+        alert(jqXHR.responseText);
+      });
+  })
+
+  $('#logout').click(function() {
+    var info = 'logout';
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        data: {
+          info: info,
+        }
+      })
+      .done(function(responseText) {
+        document.location.reload();
+      })
+      .fail(function(jqXHR, status, error) {
+        // Triggered if response status code is NOT 200 (OK)
+        alert(jqXHR.responseText);
+      });
+  })
+
 });

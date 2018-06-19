@@ -7,6 +7,7 @@ import javax.servlet.annotation.*;
 // import corresponding packages
 import javax.sql.DataSource;
 import javax.naming.*;
+import chasechoi.UserBean;
 
 @WebServlet("/login")
 public class LoginHandler extends HttpServlet {
@@ -37,23 +38,29 @@ public class LoginHandler extends HttpServlet {
      Statement stmt = null;
      String username = request.getParameter("username");
      String password = request.getParameter("password");
+     UserBean user = new UserBean();
      try {
         conn = pool.getConnection();
         stmt = conn.createStatement();
+        // save the password as hash value
         String loginSql = "SELECT * FROM accounts WHERE username=? AND STRCMP(password, PASSWORD(?)) = 0";
         PreparedStatement query = conn.prepareStatement(loginSql);
         query.setString(1, username);
         query.setString(2, password);
         ResultSet rset = query.executeQuery();
 
-        out.println("<html><head><title>Welcome to game center</title></head><body>");
-        out.println("<h2>Account</h2>");
-        // Begin an HTML form
         if (rset.next()) {  // list all the authors
-           String usernameGet = rset.getString("username");
-           out.println("<p>" + usernameGet + "</p>");
+           user.setUsername(rset.getString("username"));
+           user.setTotal(rset.getInt("total"));
+           user.setWin(rset.getInt("win"));
+           // TODO: write to session
+           HttpSession session = request.getSession();
+           session.setAttribute("user", user);
+           // TODO: delete this line
+           out.print("true");
+        } else {
+          out.print("false");
         }
-        out.println("</body></html>");
      } catch (SQLException ex) {
         out.println("<h3>Service not available. Please try again later!</h3></body></html>");
         Logger.getLogger(LoginHandler.class.getName()).log(Level.SEVERE, null, ex);

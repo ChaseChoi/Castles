@@ -88,11 +88,12 @@
                               <h3>用户登录</h3>
                             </div>
                             <div class="modal-body">
-                              <form action="login" method="post">
+                              <form id="login-info">
                                 <div class="form-group">
                                   <input type="text" id="username" class="form-control" name="username" placeholder="用户名" required="required"></div>
                                   <div class="form-group">
                                     <input type="password" id="password" class="form-control" name="password" placeholder="密码" required="required"></div>
+                                    <div class="loginWrong text-danger"></div>
                                     <div class="form-group">
                                       <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">登录</button>
                                     </div>
