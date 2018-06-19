@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">主页<span class="sr-only">(current)</span>
+                      <a class="nav-link" href="index.jsp">主页<span class="sr-only">(current)</span>
                       </a>
                     </li>
                   </ul>
@@ -34,7 +34,7 @@
                   <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                       <a href="game.html">
-                        <img class="d-block img-fluid game-ad" src="images/monument-valley.jpg" alt="First slide"></a>
+                        <img class="d-block img-fluid game-ad" src="images/castles.png" alt="First slide"></a>
                         <div class="carousel-caption center-block">
                           <h1>
                             <span>城堡决斗</span>
@@ -112,7 +112,6 @@
                                       <h3>用户注册</h3>
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <div id="alert_placeholder"></div>
                                     <div class="modal-body">
                                       <form id="sign-up-info" action="signup" method="post">
                                         <div class="form-group">

@@ -7,6 +7,7 @@ import javax.servlet.annotation.*;
 // import corresponding packages
 import javax.sql.DataSource;
 import javax.naming.*;
+import chasechoi.UserBean;
 
 @WebServlet("/signup")
 public class SignupHandler extends HttpServlet {
@@ -37,6 +38,7 @@ public class SignupHandler extends HttpServlet {
      String password = request.getParameter("password");
      Connection conn = null;
      Statement stmt = null;
+     UserBean user = new UserBean();
      try {
         conn = pool.getConnection();
         stmt = conn.createStatement();
@@ -45,6 +47,10 @@ public class SignupHandler extends HttpServlet {
         query.setString(1, username);
         query.setString(2, password);
         query.executeUpdate();  // Send the query to the server
+
+        user.setUsername(username);
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
 
         response.sendRedirect(request.getContextPath() + "/index.jsp");
      } catch (SQLException ex) {
