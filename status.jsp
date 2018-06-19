@@ -11,7 +11,7 @@
       </form>
     </c:when>
     <c:otherwise>
-      <form class="form-inline my-2 my-lg-0 nav-item dropdown">
+      <form class="form-inline my-2 my-lg-0 nav-item dropdown user-info">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <c:out value = "${user.getUsername()}"/>
         </a>

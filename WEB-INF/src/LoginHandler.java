@@ -53,10 +53,8 @@ public class LoginHandler extends HttpServlet {
            user.setUsername(rset.getString("username"));
            user.setTotal(rset.getInt("total"));
            user.setWin(rset.getInt("win"));
-           // TODO: write to session
            HttpSession session = request.getSession();
            session.setAttribute("user", user);
-           // TODO: delete this line
            out.print("true");
         } else {
           out.print("false");

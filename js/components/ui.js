@@ -95,7 +95,7 @@ Vue.component('overlay-content-last-play', {
       {{ opponent.name }}, <br/> 跳过该回合!
     </div>
     <template v-else>
-      <div>{{ opponent.name }} just played:</div>
+      <div>{{ opponent.name }} 上一回合使用了:</div>
       <card :cardObj="lastCard" />
     </template>
   </div>`
@@ -114,13 +114,13 @@ Vue.component('overlay-content-game-over', {
 Vue.component('play-result', {
   props: ['player'],
   template:
-  `<div class="play-result" :class="result">
+  `<div class="play-result"">
     <span class="name">{{ player.name }}</span>
-    <span class="result">{{ result }}</span>
+    <span>{{ result }}</span>
   </div>`,
   computed: {
     result() {
-      return this.player.isDead ? 'defeated' : 'victorious'
+      return this.player.isDead ? '失败' : '获胜'
     }
   }
 })

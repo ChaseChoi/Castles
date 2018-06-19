@@ -15,7 +15,7 @@ var state = {
   players: [
     {
       id: 0,
-      name: 'Chase',
+      name: '玩家1',
       health: 10,
       food: 10,
       isSkip: false,
@@ -26,7 +26,7 @@ var state = {
     },
     {
       id: 1,
-      name: 'Sherry',
+      name: '玩家2',
       health: 10,
       food: 10,
       isSkip: false,

@@ -3,8 +3,8 @@ let cards = [
     id: 'pikemen',
     type: 'attack',
     title: 'Pikemen',
-    description: 'Spend 1 <b>Food</b><br>Deal 1 <b>Damage</b>',
-    note: 'Send your disposable men to a certain death.',
+    description: '消耗 1 <b>食物</b><br>造成 1 <b>伤害</b>',
+    note: '让对手承受一定的伤害.',
     play (player, opponent) {
       player.food -= 1
       opponent.health -= 1
@@ -14,7 +14,7 @@ let cards = [
     id: 'catapult',
     type: 'attack',
     title: 'Catapult',
-    description: 'Spend 2 <b>Food</b><br>Deal 2 <b>Damage</b>',
+    description: '消耗 2 <b>食物</b><br>造成 2 <b>伤害</b>',
     play (player, opponent) {
       player.food -= 2
       opponent.health -= 2
@@ -24,8 +24,8 @@ let cards = [
     id: 'trebuchet',
     type: 'attack',
     title: 'Trebuchet',
-    description: 'Spend 3 <b>Food</b><br>Take 1 <b>Damage</b><br>Deal 4 <b>Damage</b>',
-    note: ' &#171;The finest machine Man ever created!&#187;',
+    description: '消耗 3 <b>食物</b><br>承受 1 <b>伤害</b><br>造成 4 <b>伤害</b>',
+    note: ' &#171;人类至今创造过的最完美的机器!&#187;',
     play (player, opponent) {
       player.food -= 3
       player.health -= 1
@@ -36,8 +36,8 @@ let cards = [
     id: 'archers',
     type: 'attack',
     title: 'Archers',
-    description: 'Spend 3 <b>Food</b><br>Deal 3 <b>Damage</b>',
-    note: '&#171;Ready your bows! Nock! Mark! Draw! Loose!&#187;',
+    description: '消耗 3 <b>食物</b><br>造成 3 <b>伤害</b>',
+    note: '&#171;随时准备射击!&#187;',
     play (player, opponent) {
       player.food -= 3
       opponent.health -= 3
@@ -47,8 +47,8 @@ let cards = [
     id: 'knighthood',
     type: 'attack',
     title: 'Knighthood',
-    description: 'Spend 7 <b>Food</b><br>Deal 5 <b>Damage</b>',
-    note: 'Knights may be even more expansive than their mount.',
+    description: '消耗 7 <b>食物</b><br>造成 5 <b>伤害</b>',
+    note: '骑士比坐骑拥有更高的灵活性',
     play (player, opponent) {
       player.food -= 7
       opponent.health -= 5
@@ -58,7 +58,7 @@ let cards = [
     id: 'repair',
     type: 'support',
     title: 'Repair',
-    description: 'Repair 5 <b>Damage</b><br>Skip your next turn',
+    description: '修复 5 <b>伤害</b><br>跳过下一回合',
     play (player, opponent) {
       player.isSkip = true
       player.health += 5
@@ -68,8 +68,8 @@ let cards = [
     id: 'quick-repair',
     type: 'support',
     title: 'Quick Repair',
-    description: 'Spend 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
-    note: 'This is not without consequences on the moral and energy!',
+    description: '消耗 3 <b>食物</b><br>修复 3 <b>伤害</b>',
+    note: '这将在道德和力量上获得成果!',
     play (player, opponent) {
       player.food -= 3
       player.health += 3
@@ -79,8 +79,8 @@ let cards = [
     id: 'farm',
     type: 'support',
     title: 'Farm',
-    description: 'Gather 5 <b>Food</b><br>Skip your next turn',
-    note: '&#171;One should be patient to grow crops.&#187;',
+    description: '获得 5 <b>食物</b><br>跳过下一回合',
+    note: '&#171;种植谷物需要极大的耐心&#187;',
     play (player, opponent) {
       player.isSkip = true
       player.food += 5
@@ -90,7 +90,7 @@ let cards = [
     id: 'granary',
     type: 'support',
     title: 'Granary',
-    description: 'Gather 2 <b>Food</b>',
+    description: '获得 2 <b>食物</b>',
     play (player, opponent) {
       player.food += 2
     }
@@ -99,8 +99,8 @@ let cards = [
     id: 'poison',
     type: 'special',
     title: 'Poison',
-    description: 'Spend 1 <b>Food</b><br>Your opponent lose 3 <b>Food</b>',
-    note: 'Send someone you trust poison the enemy granary.',
+    description: '消耗 1 <b>食物</b><br>对手 失去 3 <b>Food</b>',
+    note: '让可靠的人摧毁敌人的谷仓.',
     play (player, opponent) {
       player.food -= 1
       opponent.food -= 3
@@ -110,8 +110,8 @@ let cards = [
     id: 'fireball',
     type: 'special',
     title: 'Fireball',
-    description: 'Take 3 <b>Damage</b><br>Deal 5 <b>Damage</b><br>Skip your turn',
-    note: '&#171;Magic isn\'t for kids. You fool.&#187;',
+    description: 'Take 3 <b>伤害</b><br>造成 5 <b>伤害</b><br>跳过此回合',
+    note: '&#171;魔法并不止存在于童话里&#187;',
     play (player, opponent) {
       player.health -= 3
       player.isSkip = true
@@ -122,8 +122,8 @@ let cards = [
     id: 'chapel',
     type: 'special',
     title: 'Chapel',
-    description: 'Do nothing',
-    note: 'Pray in the chapel, and hope someone will listen.',
+    description: '原地待命',
+    note: '在教堂里祈祷, 希望有人可以倾听',
     play (player, opponent) {
       // Nothing happens...
     },
@@ -132,7 +132,7 @@ let cards = [
     id: 'curse',
     type: 'special',
     title: 'Curse',
-    description: 'Everyone:<br>Lose 3 <b>Food</b><br>Take 3 <b>Damage</b>',
+    description: '双方:<br>失去 3 <b>食物</b><br>造成 3 <b>伤害</b>',
     play (player, opponent) {
       player.food -= 3
       player.health -= 3
@@ -144,7 +144,7 @@ let cards = [
     id: 'miracle',
     type: 'special',
     title: 'Miracle',
-    description: 'Everyone:<br>Gather 3 <b>Food</b><br>Repair 3 <b>Damage</b>',
+    description: '双方:<br>获得 3 <b>食物</b><br>修复 3 <b>伤害</b>',
     play (player, opponent) {
       player.food += 3
       player.health += 3

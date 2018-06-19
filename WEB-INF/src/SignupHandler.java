@@ -46,10 +46,8 @@ public class SignupHandler extends HttpServlet {
         query.setString(2, password);
         query.executeUpdate();  // Send the query to the server
 
-        // TODO: dispatch to index showing profile
-        out.println("<html><head><title>Hey</title></head><body><h1>hello</h1><body></html>");
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
      } catch (SQLException ex) {
-        out.println("<h3>Service not available. Please try again later!</h3></body></html>");
         Logger.getLogger(SignupHandler.class.getName()).log(Level.SEVERE, null, ex);
      } finally {
         out.close();

@@ -39,6 +39,11 @@ $(document).ready(function() {
     if (!flag) {
       $('.pwdNotMatch').html('密码不一致!');
       $('#passwordValid').val('');
+    } else {
+      $('#alert_placeholder').append('<div id="alertdiv" class="alert alert-success" role="alert">注册成功!</div>')
+      setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+        $("#alertdiv").remove();
+      }, 3000);
     }
     return flag;
   })

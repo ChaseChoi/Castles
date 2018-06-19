@@ -117,3 +117,8 @@
 #navbarDropdown {
   color: white;
 }
+
+.user-info {
+  position: relative;
+  margin-right: 5rem;
+}
