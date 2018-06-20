@@ -18,10 +18,8 @@ public class Logout extends HttpServlet {
         if (session != null) {
           session.invalidate();
           out.print("success");
-          // out.println("<html><head><title>New</title></head><body><p>success</p></body></html>");
         } else {
           out.print("fail");
-          // out.println("<html><head><title>New</title></head><body><p>success</p></body></html>");
         }
      } finally {
         out.close();
